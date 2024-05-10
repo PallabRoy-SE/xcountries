@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Card from './components/card/Card';
+import axios from 'axios';
 
 function App() {
     const [countries, setCountries] = useState([]);
@@ -9,13 +10,10 @@ function App() {
     const fetchCountries = async () => {
         try {
             setLoading(true);
-            const response = await fetch('https://restcountries.com/v3.1/all');
-            if (response.status === 200) {
-                const countryList = await response.json();
-                setCountries(() => [...countryList]);
-            } else throw new Error(response.statusText);
+            const response = await axios.get('https://restcountries.com/v3.1/all');
+            setCountries(() => [...response.data]);
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
         } finally {
             setLoading(false);
         }
