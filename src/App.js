@@ -9,7 +9,7 @@ function App() {
     const fetchCountries = async () => {
         try {
             setLoading(true);
-            const response = await fetch('https://restcountries.com/v3.1/al');
+            const response = await fetch('https://restcountries.com/v3.1/all');
             if (response.status === 200) {
                 const countryList = await response.json();
                 setCountries(() => [...countryList]);
