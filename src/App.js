@@ -13,7 +13,7 @@ function App() {
             const response = await axios.get('https://restcountries.com/v3.1/all');
             setCountries(() => [...response.data]);
         } catch (error) {
-            console.log(error.message);
+            console.error(error.message);
         } finally {
             setLoading(false);
         }
