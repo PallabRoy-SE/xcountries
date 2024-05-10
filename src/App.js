@@ -9,9 +9,11 @@ function App() {
     const fetchCountries = async () => {
         try {
             setLoading(true);
-            const response = await fetch('https://restcountries.com/v3.1/all');
-            const countryList = await response.json();
-            setCountries(() => [...countryList]);
+            const response = await fetch('https://restcountries.com/v3.1/al');
+            if (response.status === 200) {
+                const countryList = await response.json();
+                setCountries(() => [...countryList]);
+            } else throw new Error(response.statusText);
         } catch (error) {
             console.log(error);
         } finally {
